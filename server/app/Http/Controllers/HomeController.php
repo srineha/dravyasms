@@ -9,8 +9,10 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Input;
 use Hash;
+use DB;
 class HomeController extends Controller
 {
+	// API to transfer money
     public function transfer(){
     	if(!Input::has('from')){
     		return $this->error('No User to send money');
@@ -42,10 +44,14 @@ class HomeController extends Controller
     	$user->balance = $user->balance - $money;
     	$user->push();
 
+    	DB::table('transfers')->insert(
+		    ['from' => $user->id, 'to' => $to->id,'amount'=>$money]
+		);
     	return $this->success('Successfully transferred');
 
     }
 
+    // API to register gcm id
      public function gcm(){
     	if(!Input::has('from')){
     		return $this->error('No User ID');
@@ -63,6 +69,8 @@ class HomeController extends Controller
     	return $this->success('GCM Added');
 
     }
+
+    // API for login
     public function login(){
     	if(!Input::has('phone')){
     		return $this->error('Phone Number required');
@@ -83,11 +91,23 @@ class HomeController extends Controller
     	}
     }
 
+    public function user($id){
+
+    	$user = User::find($id);
+    	if(is_null($user))
+    		return $this->error('Wrong user ID');
+    	return $this->success('User data',$user);
+
+    }
+    // api to send error
     public function error($message){
     	return array('error'=>1,'message'=>$message);
     }
 
+    // api to success
     public function success($message,$data=array()){
     	return array('error'=>0,'message'=>$message,'data'=>$data);
     }
+
+
 }

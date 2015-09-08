@@ -7,6 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'ZendService\\Google\\Gcm\\' => array($vendorDir . '/zendframework/zendservice-google-gcm/library'),
+    'ZendService\\Google\\Exception\\' => array($vendorDir . '/zendframework/zendservice-google-gcm/library'),
+    'ZendService\\Apple\\Exception\\' => array($vendorDir . '/zendframework/zendservice-apple-apns/library'),
+    'ZendService\\Apple\\Apns\\' => array($vendorDir . '/zendframework/zendservice-apple-apns/library'),
+    'Sly' => array($vendorDir . '/sly/notification-pusher/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
@@ -17,6 +22,7 @@ return array(
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
+    'Davibennun\\LaravelPushNotification' => array($vendorDir . '/davibennun/laravel-push-notification/src'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );
