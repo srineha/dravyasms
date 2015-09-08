@@ -12,7 +12,5 @@
 */
 
 Route::group(['prefix'=>'api'],function(){
-	Route::post('transfer',function(){
-		return $id;
-	});
+	Route::post('transfer','HomeController@transfer');
 });
