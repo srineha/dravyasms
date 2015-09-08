@@ -90,6 +90,10 @@ public class MainActivity extends MyActivity {
             return true;
         }
 
+        if (id == R.id.action_refresh) {
+            refresh();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -156,7 +160,7 @@ public class MainActivity extends MyActivity {
     public void registerGCM(){
         final GoogleCloudMessaging gcm;
 
-        final String SENDER_ID = "1032273645702";
+        final String SENDER_ID = "10322736457"+me.id;
         gcm = GoogleCloudMessaging.getInstance(this);
 
 
@@ -184,5 +188,33 @@ public class MainActivity extends MyActivity {
                 return nameValuePairs;
             }
         }.execute(getUrl("/gcm"));
+    }
+
+    public void refresh(){
+        new PostTask(this, "Refreshing data...") {
+            @Override
+            public List<NameValuePair> getPostData(String[] params, int i) {
+                List<NameValuePair> nameValuePairs = new ArrayList<>();
+
+                return nameValuePairs;
+            }
+
+
+            @Override
+            public void onPostExecute(Result ret) {
+                super.onPostExecute(ret);
+                if (ret.statusCode == 200) {
+                    try {
+                        JSONObject data = ret.data.optJSONObject("data");
+                        me = new User(data);
+                        Log.d("User", me.toString());
+                        ((TextView)findViewById(R.id.balance)).setText(String.format(getString(R.string.balance), me.balance));
+                    } catch (Exception E) {
+                        E.printStackTrace();
+                    }
+
+                }
+            }
+        }.execute(getUrl("/user/"+me.id));
     }
 }

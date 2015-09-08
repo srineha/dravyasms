@@ -4,6 +4,7 @@
     <string name="title_activity_main">DravyaSMS</string>
 
     <string name="action_logout">Logout</string>
+    <string name="action_refresh">Refresh</string>
 
     <string name="welcome">Welcome %s</string>
     <string name="balance">Rs %d</string>
