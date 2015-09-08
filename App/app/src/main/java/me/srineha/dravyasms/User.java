@@ -23,7 +23,7 @@ public class User {
     public String toString(){
         JSONObject user = new JSONObject();
         try {
-            user.put("journey_id",id);
+            user.put("id",id);
             user.put("name",name);
             user.put("phone",phone);
             user.put("balance",balance);

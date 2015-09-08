@@ -35,4 +35,8 @@ public class MyActivity extends AppCompatActivity {
             spe.apply();
         }
     }
+
+    public String getUrl(String s){
+        return "http://dravyasms.srineha.me/api"+s;
+    }
 }
