@@ -21,6 +21,7 @@
             <AutoCompleteTextView android:id="@+id/phone" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_phone"
                 android:maxLines="1"
+                android:inputType="phone"
                 android:singleLine="true"
                 android:layout_marginTop="10dp"/>
 

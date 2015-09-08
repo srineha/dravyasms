@@ -157,7 +157,6 @@ public class LoginActivity extends MyActivity {
                         }
 
                         Toast.makeText(context, ret.statusMessage, Toast.LENGTH_LONG).show();
-                        startNextActivity();
                     }
                 }
             }.execute(getUrl("/login"));

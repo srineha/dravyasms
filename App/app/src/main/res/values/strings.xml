@@ -4,4 +4,17 @@
     <string name="title_activity_main">DravyaSMS</string>
 
     <string name="action_logout">Logout</string>
+
+    <string name="welcome">Welcome %s</string>
+    <string name="balance">Rs %d</string>
+
+    <string name="transfer_money">Transfer Money</string>
+    <string name="balanceStr">Amount To Transfer</string>
+
+
+    <string name="your_bal">Your Balance Is</string>
+    <string name="Transfer">Transfer</string>
+
+
+
 </resources>

@@ -10,9 +10,85 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:paddingTop="60dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/text"
+                android:text="@string/welcome"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:id="@+id/welcomeString"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/text"
+                android:text="@string/your_bal"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:text="@string/balance"
+                android:id="@+id/balance"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/transfer_money"/>
+                <EditText android:id="@+id/phone" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:inputType="phone"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"/>
 
+                <EditText android:id="@+id/amount" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/balanceStr"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified" android:inputType="numberDecimal"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1" android:singleLine="true" />
+
+                <android.support.v7.widget.AppCompatButton android:id="@+id/phone_sign_in_button" style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" android:text="@string/Transfer"
+                    android:textColor="@color/text"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </RelativeLayout>
