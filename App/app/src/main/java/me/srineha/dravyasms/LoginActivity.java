@@ -7,7 +7,9 @@ import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -16,6 +18,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -46,28 +50,20 @@ import me.srineha.dravyasms.Server.Result;
  */
 public class LoginActivity extends MyActivity {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+
 
     // UI references.
     private AutoCompleteTextView mphoneView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if(me!=null)
+            startNextActivity();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Set up the login form.
         mphoneView = (AutoCompleteTextView) findViewById(R.id.phone);
@@ -84,7 +80,7 @@ public class LoginActivity extends MyActivity {
             }
         });
 
-        Button mphoneSignInButton = (Button) findViewById(R.id.phone_sign_in_button);
+        AppCompatButton mphoneSignInButton = (AppCompatButton) findViewById(R.id.phone_sign_in_button);
         mphoneSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +88,9 @@ public class LoginActivity extends MyActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        ColorStateList csl = new ColorStateList(new int[][]{new int[0]}, new int[]{getResources().getColor(R.color.dark_primary)});
+        mphoneSignInButton.setSupportBackgroundTintList(csl);
+
     }
 
 
@@ -154,6 +151,7 @@ public class LoginActivity extends MyActivity {
                             JSONObject data = ret.data.optJSONObject("data");
                             me = new User(data);
                             Log.d("User", me.toString());
+                            startNextActivity();
                         } catch (Exception E) {
                             E.printStackTrace();
                         }
@@ -174,6 +172,7 @@ public class LoginActivity extends MyActivity {
 
 
     public void startNextActivity(){
-
+        startActivity(new Intent(this,MainActivity.class));
+        finish();
     }
 }
