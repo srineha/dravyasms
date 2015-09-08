@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Input;
+use Hash;
 class HomeController extends Controller
 {
     public function transfer(){
@@ -45,12 +46,48 @@ class HomeController extends Controller
 
     }
 
+     public function gcm(){
+    	if(!Input::has('from')){
+    		return $this->error('No User ID');
+    	}
+    	$user = User::find(Input::get('from'));
+    	if(is_null($user))
+    		return $this->error('Wrong sender ID');
+
+    	if(!Input::has('gcm')){
+    		return $this->error('no gcm');
+    	}
+
+    	$user->gcm_id = Input::get('gcm');
+    	$user->save();
+    	return $this->success('GCM Added');
+
+    }
+    public function login(){
+    	if(!Input::has('phone')){
+    		return $this->error('Phone Number required');
+    	}
+    	$user = User::where('phone','=',Input::get('phone'))->first();
+    	if(is_null($user))
+    		return $this->error('Invalid phone number');
+
+    	if(!Input::has('password')){
+    		return $this->error('Password required');
+    	}
+
+    	if(Hash::check(Input::get('password'),$user->password)){
+    		return $this->success('Successfully logged in',$user);
+    	}
+    	else{
+    		return $this->error('Invalid Password');
+    	}
+    }
 
     public function error($message){
     	return array('error'=>1,'message'=>$message);
     }
 
     public function success($message,$data=array()){
-    	return array_merge(array('error'=>0,'message'=>$message),$data);
+    	return array('error'=>0,'message'=>$message,'data'=>$data);
     }
 }

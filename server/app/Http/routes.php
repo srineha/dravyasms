@@ -13,4 +13,6 @@
 
 Route::group(['prefix'=>'api'],function(){
 	Route::post('transfer','HomeController@transfer');
+	Route::post('login','HomeController@login');
+	Route::post('gcm','HomeController@gcm');
 });
